@@ -18,11 +18,18 @@ namespace UsuarioApi.Controllers
             _service = service;
         }
 
-        [HttpPost]
+        [HttpPost("cadastro")]
         public async Task<IActionResult> cadastaUsuario(UsuarioDto dto)
         {
             await _service.CadastraUsuario(dto);
             return Ok("Usuario Cadastrado!");
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginUsuarioDto dto)
+        {
+            var token =  await _service.Login(dto);
+            return Ok(token);
         }
     }
 }
